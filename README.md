@@ -14,6 +14,21 @@ Find the implementation in [src/index.js](./src/index.js)
 
 ## Types
 
+This package includes TypeScript definition for `it.each` and `describe.each`. Thus the parameter should be the right type from the array of values:
+
+```js
+it.each([
+  { name: 'Joe', age: 30 },
+  { name: 'Mary', age: 20 },
+])('has correct types', (user) => {
+  // the type for the "user" should be
+  // name: string, age: number
+  expect(user).to.have.keys('name', 'age')
+  expect(user.name).to.be.a('string')
+  expect(user.age).to.be.a('number')
+})
+```
+
 ## Small print
 
 Author: Gleb Bahmutov &lt;gleb.bahmutov@gmail.com&gt; &copy; 2021
