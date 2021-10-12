@@ -20,4 +20,13 @@ describe('using it.each', () => {
     expect(user.name).to.be.a('string')
     expect(user.age).to.be.a('number')
   })
+
+  it.each([
+    [1, 'foo'],
+    [2, 'bar'],
+  ])('title', (a, b) => {
+    expect(a).to.be.a('number')
+    expect(b).to.be.a('string')
+    expect(b.length).to.equal(3)
+  })
 })
