@@ -10,3 +10,14 @@ describe.each(['A', 1])('%s', (x) => {
     cy.wrap(x).should('equal', x)
   })
 })
+
+describe.each([
+  { name: 'Joe', age: 30 },
+  { name: 'Mary', age: 20 },
+])('has correct types', (user) => {
+  it('checks out', () => {
+    expect(user).to.have.keys('name', 'age')
+    expect(user.name).to.be.a('string')
+    expect(user.age).to.be.a('number')
+  })
+})

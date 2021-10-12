@@ -2,22 +2,19 @@
 // any help improving them is welcome
 // https://github.com/bahmutov/cypress-each
 declare namespace Mocha {
-  type TestCallback = (
-    this: Context,
-    arg0: unknown,
-    arg1: unknown,
-    arg2: unknown,
-  ) => void
+  type TestCallback<T> = (this: Context, arg0: T, arg1: any, arg2: any) => void
 
   interface TestFunction {
-    each: (
-      values: unknown[],
-    ) => (titlePattern: string, fn: TestCallback) => void
+    // definition for it.each
+    each<T = unknown>(
+      values: T[],
+    ): (titlePattern: string, fn: TestCallback<T>) => void
   }
 
   interface SuiteFunction {
-    each: (
-      values: unknown[],
-    ) => (titlePattern: string, fn: TestCallback) => void
+    // definition for describe.each
+    each<T = unknown>(
+      values: T[],
+    ): (titlePattern: string, fn: TestCallback<T>) => void
   }
 }
