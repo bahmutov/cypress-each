@@ -1,5 +1,7 @@
 # cypress-each ![cypress version](https://img.shields.io/badge/cypress-8.5.0-brightgreen)
-> An demo of mocha-each and custom describe.each and it.each implementation for Cypress
+> A demo of mocha-each and custom describe.each and it.each implementation for Cypress
+
+Read [Dynamic API Tests Using Cypress-Each Plugin](https://glebbahmutov.com/blog/dynamic-api-tests-using-cypress-each/)
 
 Find the implementation in [src/index.js](./src/index.js)
 

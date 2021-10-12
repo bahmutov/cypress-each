@@ -11,8 +11,8 @@
     "semantic-release": "semantic-release"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
     "cypress": "^8.5.0",
     "cypress-expect": "^2.4.3",
