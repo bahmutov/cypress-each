@@ -27,6 +27,7 @@
   },
   "format": {
     "I am a person": "passed",
-    "I am a person at 42": "passed"
+    "I am a person at 42": "passed",
+    "I use no format placeholders": "passed"
   }
 }

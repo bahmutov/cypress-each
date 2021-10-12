@@ -20,4 +20,13 @@ describe('format', () => {
     expect(who).to.equal(person)
     expect(life).to.equal(42)
   })
+
+  it.each([['person', 42, person]])(
+    'I use no format placeholders',
+    (name, life, who) => {
+      expect(name).to.equal('person')
+      expect(who).to.equal(person)
+      expect(life).to.equal(42)
+    },
+  )
 })

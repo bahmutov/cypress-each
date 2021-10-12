@@ -6,7 +6,8 @@ const { format } = require('util')
 function formatTitle(pattern, ...values) {
   // count how many format placeholders are in the pattern
   // by counting the "%" characters
-  const count = pattern.match(/%/g).length
+  const placeholders = pattern.match(/%/g)
+  const count = placeholders ? placeholders.length : 0
   return format.apply(null, [pattern].concat(values.slice(0, count)))
 }
 
