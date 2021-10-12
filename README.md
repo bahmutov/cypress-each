@@ -29,6 +29,22 @@ it.each([
 })
 ```
 
+Include this module with other library types, like
+
+```json
+{
+  "compilerOptions": {
+    "types": ["cypress", "cypress-each"],
+  }
+}
+```
+
+Or inside an individual spec file add
+
+```js
+/// <reference types="cypress-each" />
+```
+
 ## Small print
 
 Author: Gleb Bahmutov &lt;gleb.bahmutov@gmail.com&gt; &copy; 2021
