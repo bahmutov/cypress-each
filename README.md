@@ -1,4 +1,4 @@
-# cypress-each
+# cypress-each ![cypress version](https://img.shields.io/badge/cypress-8.5.0-brightgreen)
 > An demo of mocha-each and custom describe.each and it.each implementation for Cypress
 
 Find the implementation in [src/index.js](./src/index.js)

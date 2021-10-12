@@ -1,20 +1,27 @@
 {
   "name": "cypress-each",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "Simple implementation for describe.each and it.each",
   "main": "src",
   "files": [
     "src"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "semantic-release": "semantic-release"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "cypress": "^8.5.0",
+    "cypress-expect": "^2.4.3",
     "mocha-each": "^2.0.1",
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "semantic-release": "^18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bahmutov/cypress-each.git"
   }
 }
