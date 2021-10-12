@@ -1,3 +1,4 @@
+// @ts-check
 /// <reference types="cypress" />
 
 describe('has expected values', () => {

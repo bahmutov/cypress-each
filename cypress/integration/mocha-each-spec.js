@@ -1,5 +1,3 @@
-// @ts-check
-
 // https://github.com/ryym/mocha-each
 const forEach = require('mocha-each')
 

@@ -3,10 +3,12 @@
   "version": "0.0.0-development",
   "description": "Simple implementation for describe.each and it.each",
   "main": "src",
+  "types": "src/index.d.ts",
   "files": [
     "src"
   ],
   "scripts": {
+    "lint": "tsc --pretty --allowJs --noEmit src/index.js cypress/integration/*.js",
     "test": "cypress-expect run --expect cypress/expected.json",
     "semantic-release": "semantic-release"
   },
@@ -18,7 +20,8 @@
     "cypress-expect": "^2.4.3",
     "mocha-each": "^2.0.1",
     "prettier": "^2.4.1",
-    "semantic-release": "^18.0.0"
+    "semantic-release": "^18.0.0",
+    "typescript": "^4.4.3"
   },
   "repository": {
     "type": "git",
