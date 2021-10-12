@@ -1,0 +1,28 @@
+{
+  "A": {
+    "checks out for A": "passed"
+  },
+  "1": {
+    "checks out for 1": "passed"
+  },
+  "using it.each": {
+    "checks A": "passed",
+    "checks 1": "passed",
+    "capital letter A !== a": "passed"
+  },
+  "has expected values": {
+    "A = A": "passed",
+    "1 = 1": "passed",
+    "capital letter A !== a": "passed"
+  },
+  "add()": {
+    "adds 1 and 1 then returns 2": "passed",
+    "adds 2 and -2 then returns 0": "passed",
+    "adds 140 and 48 then returns 188": "passed",
+    "with invalid arguments": {
+      "adds 1 and \"foo\" then returns NaN": "passed",
+      "adds null and 10 then returns NaN": "passed",
+      "adds {} and [] then returns NaN": "passed"
+    }
+  }
+}
