@@ -1,8 +1,11 @@
 {
-  "name": "describe-each",
+  "name": "cypress-each",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Simple implementation for describe.each and it.each",
+  "main": "src",
+  "files": [
+    "src"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
