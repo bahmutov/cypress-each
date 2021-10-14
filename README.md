@@ -32,6 +32,31 @@ it.each(selectors)('element %s is visible', (selector) => {
   cy.visit('/')
   cy.get(selector).should('be.visible')
 })
+// creates tests
+// "element header is visible"
+// "element footer is visible"
+// "element .new-todo is visible"
+```
+
+## Multiple arguments
+
+You can pass multiple arguments into the callback function by using an array of arrays. For example, to check if an element is visible, invisible, or exists, you can have both a selector and the assertion string for each item.
+
+```js
+const data = [
+  // each entry is an array [selector, assertion]
+  ['header', 'be.visible'],
+  ['footer', 'exist']
+  ['.new-todo', 'not.be.visible']
+]
+it.each(data)('element %s should %s', (selector, assertion) => {
+  cy.visit('/')
+  cy.get(selector).should(assertion)
+})
+// creates tests
+// "element header should be.visible"
+// "element footer should exist"
+// "element .new-todo should not.be.visible"
 ```
 
 ## Examples
