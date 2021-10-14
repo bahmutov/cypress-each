@@ -5,6 +5,40 @@ Read [Dynamic API Tests Using Cypress-Each Plugin](https://glebbahmutov.com/blog
 
 Find the implementation in [src/index.js](./src/index.js)
 
+## Install and use
+
+```
+# install using NPM
+$ npm i -D cypress-each
+# install using Yarn
+# yarn add -D cypress-each
+```
+
+Import `cypress-each` in a single spec or in Cypress support file
+
+```js
+import 'cypress-each'
+// now can use describe.each and it.each
+```
+
+Let's create a separate test for each selector from a list
+
+```js
+import 'cypress-each'
+
+// create a separate test for each selector
+const selectors = ['header', 'footer', '.new-todo']
+it.each(selectors)('element %s is visible', (selector) => {
+  cy.visit('/')
+  cy.get(selector).should('be.visible')
+})
+```
+
+## Examples
+
+- Watch [Using cypress-each To Create Separate Tests](https://youtu.be/utPKRV_fL1E)
+- Read [Dynamic API Tests Using Cypress-Each Plugin](https://glebbahmutov.com/blog/dynamic-api-tests-using-cypress-each/)
+
 ## Specs
 
 - [it-spec.js](./cypress/integration/it-spec.js) uses no shortcuts to define multiple tests that are almost the same. We want to avoid the repetition
