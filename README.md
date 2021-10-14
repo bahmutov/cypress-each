@@ -59,6 +59,33 @@ it.each(data)('element %s should %s', (selector, assertion) => {
 // "element .new-todo should not.be.visible"
 ```
 
+## Test and suite titles
+
+You can use the arguments to the test callback in the test title in order.
+
+```js
+it.each([10, 20, 30])('number is %d', (x) => { ... })
+// creates the tests
+// "number is 10"
+// "number is 20"
+// "number is 30"
+```
+
+If you want to use the iteration variable in the title, use `%k` for zero-based index, or `%K` for one-based index.
+
+```js
+it.each([10, 20, 30])('checking item %k', (x) => { ... })
+// creates the tests
+// "checking item 0"
+// "checking item 1"
+// "checking item 2"
+it.each([10, 20, 30])('checking item %K', (x) => { ... })
+// creates the tests
+// "checking item 1"
+// "checking item 2"
+// "checking item 3"
+```
+
 ## Examples
 
 - Watch [Using cypress-each To Create Separate Tests](https://youtu.be/utPKRV_fL1E)

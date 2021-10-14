@@ -14,13 +14,15 @@ function formatTitle(pattern, ...values) {
 if (!it.each) {
   it.each = (values) => {
     return function (titlePattern, testCallback) {
-      values.forEach((value) => {
+      values.forEach((value, k) => {
+        const testTitle = titlePattern.replace('%k', k).replace('%K', k + 1)
+
         // define a test for each value
         if (Array.isArray(value)) {
-          const title = formatTitle(titlePattern, ...value)
+          const title = formatTitle(testTitle, ...value)
           it(title, testCallback.bind(null, ...value))
         } else {
-          const title = formatTitle(titlePattern, value)
+          const title = formatTitle(testTitle, value)
           it(title, testCallback.bind(null, value))
         }
       })
@@ -32,15 +34,19 @@ if (!describe.each) {
   describe.each = (values) => {
     return function describeEach(titlePattern, testCallback) {
       // define a test for each value
-      values.forEach((value) => {
+      values.forEach((value, k) => {
+        const testTitle = titlePattern.replace('%k', k).replace('%K', k + 1)
+
         if (Array.isArray(value)) {
-          const title = formatTitle(titlePattern, ...value)
+          const title = formatTitle(testTitle, ...value)
           describe(title, testCallback.bind(null, ...value))
         } else {
-          const title = formatTitle(titlePattern, value)
+          const title = formatTitle(testTitle, value)
           describe(title, testCallback.bind(null, value))
         }
       })
     }
   }
 }
+
+module.exports = { formatTitle }
