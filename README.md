@@ -1,4 +1,4 @@
-# cypress-each ![cypress version](https://img.shields.io/badge/cypress-8.5.0-brightgreen)
+# cypress-each ![cypress version](https://img.shields.io/badge/cypress-8.5.0-brightgreen) [![renovate-app badge][renovate-badge]][renovate-app]
 > A demo of mocha-each and custom describe.each and it.each implementation for Cypress
 
 Read [Dynamic API Tests Using Cypress-Each Plugin](https://glebbahmutov.com/blog/dynamic-api-tests-using-cypress-each/)
@@ -119,3 +119,6 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
+
+[renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
+[renovate-app]: https://renovateapp.com/
