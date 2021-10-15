@@ -12,26 +12,30 @@ function formatTitle(pattern, ...values) {
 }
 
 if (!it.each) {
-  it.each = (values) => {
+  it.each = function (values) {
     return function (titlePattern, testCallback) {
-      values.forEach((value, k) => {
+      values.forEach(function (value, k) {
         const testTitle = titlePattern.replace('%k', k).replace('%K', k + 1)
 
         // define a test for each value
         if (Array.isArray(value)) {
           const title = formatTitle(testTitle, ...value)
-          it(title, testCallback.bind(null, ...value))
+          it(title, function itArrayCallback() {
+            return testCallback.apply(this, value)
+          })
         } else {
           const title = formatTitle(testTitle, value)
-          it(title, testCallback.bind(null, value))
+          it(title, function itCallback() {
+            return testCallback.call(this, value)
+          })
         }
-      })
+      }, this)
     }
   }
 }
 
 if (!describe.each) {
-  describe.each = (values) => {
+  describe.each = function (values) {
     return function describeEach(titlePattern, testCallback) {
       // define a test for each value
       values.forEach((value, k) => {
