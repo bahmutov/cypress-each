@@ -1,9 +1,10 @@
 # cypress-each ![cypress version](https://img.shields.io/badge/cypress-8.6.0-brightgreen) [![renovate-app badge][renovate-badge]][renovate-app] [![ci](https://github.com/bahmutov/cypress-each/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/bahmutov/cypress-each/actions/workflows/ci.yml)
 > A demo of mocha-each and custom describe.each and it.each implementation for Cypress
 
-Read [Dynamic API Tests Using Cypress-Each Plugin](https://glebbahmutov.com/blog/dynamic-api-tests-using-cypress-each/)
+## Blog posts
 
-Find the implementation in [src/index.js](./src/index.js)
+- [Dynamic API Tests Using Cypress-Each Plugin](https://glebbahmutov.com/blog/dynamic-api-tests-using-cypress-each/)
+- [Refactor Tests To Be Independent And Fast Using Cypress-Each Plugin](https://glebbahmutov.com/blog/refactor-using-each/)
 
 ## Install and use
 
@@ -123,6 +124,8 @@ See [cypress/integration/title-function.js](./cypress/integration/ title-functio
 - Read [Dynamic API Tests Using Cypress-Each Plugin](https://glebbahmutov.com/blog/dynamic-api-tests-using-cypress-each/)
 
 ## Specs
+
+Find the implementation in [src/index.js](./src/index.js)
 
 - [it-spec.js](./cypress/integration/it-spec.js) uses no shortcuts to define multiple tests that are almost the same. We want to avoid the repetition
 - [it-each-spec.js](./cypress/integration/it-each-spec.js) uses the `it.each` helper to generate multiple `it` tests given a data array
