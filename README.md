@@ -86,6 +86,37 @@ it.each([10, 20, 30])('checking item %K', (x) => { ... })
 // "checking item 3"
 ```
 
+### Title function
+
+You can form the test title yourself using a function. The function will get the item, the index, and all items and should return a string with the test title.
+
+```js
+function makeTestTitle(s, k, strings) {
+  return `test ${k + 1} for "${s}"`
+}
+it.each(['first', 'second'])(makeTestTitle, () => ...)
+// creates the tests
+// 'test 1 for "first"'
+// 'test 2 for "second"'
+```
+
+It is very useful for forming a test title based on a property of an object, like
+
+```js
+it.each([
+  { name: 'Joe', age: 30 },
+  { name: 'Mary', age: 20 },
+])(
+  (person) => `tests person ${person.name}`,
+  (person) => { ... }
+})
+// creates the tests
+// "tests person Joe"
+// "tests person Mary"
+```
+
+See [cypress/integration/title-function.js](./cypress/integration/ title-function.js) for more examples
+
 ## Examples
 
 - Watch [Using cypress-each To Create Separate Tests](https://youtu.be/utPKRV_fL1E)

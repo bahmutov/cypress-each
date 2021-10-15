@@ -11,20 +11,41 @@ function formatTitle(pattern, ...values) {
   return format.apply(null, [pattern].concat(values.slice(0, count)))
 }
 
+function makeTitle(titlePattern, value, k, values) {
+  if (typeof titlePattern === 'string') {
+    const testTitle = titlePattern.replace('%k', k).replace('%K', k + 1)
+    if (Array.isArray(value)) {
+      return formatTitle(testTitle, ...value)
+    } else {
+      return formatTitle(testTitle, value)
+    }
+  } else if (typeof titlePattern === 'function') {
+    return titlePattern(value, k, values)
+  }
+
+  throw new Error('titlePattern must be a string or function')
+}
+
 if (!it.each) {
   it.each = function (values) {
     return function (titlePattern, testCallback) {
       values.forEach(function (value, k) {
-        const testTitle = titlePattern.replace('%k', k).replace('%K', k + 1)
+        // const testTitle = titlePattern.replace('%k', k).replace('%K', k + 1)
+        const title = makeTitle(titlePattern, value, k, values)
+        if (!title) {
+          throw new Error(
+            `Could not compute the test title ${k} for value ${value}`,
+          )
+        }
 
         // define a test for each value
         if (Array.isArray(value)) {
-          const title = formatTitle(testTitle, ...value)
+          // const title = formatTitle(testTitle, ...value)
           it(title, function itArrayCallback() {
             return testCallback.apply(this, value)
           })
         } else {
-          const title = formatTitle(testTitle, value)
+          // const title = formatTitle(testTitle, value)
           it(title, function itCallback() {
             return testCallback.call(this, value)
           })
@@ -39,13 +60,20 @@ if (!describe.each) {
     return function describeEach(titlePattern, testCallback) {
       // define a test for each value
       values.forEach((value, k) => {
-        const testTitle = titlePattern.replace('%k', k).replace('%K', k + 1)
+        // const testTitle = titlePattern.replace('%k', k).replace('%K', k + 1)
+        const title = makeTitle(titlePattern, value, k, values)
+
+        if (!title) {
+          throw new Error(
+            `Could not compute the suite title ${k} for value ${value}`,
+          )
+        }
 
         if (Array.isArray(value)) {
-          const title = formatTitle(testTitle, ...value)
+          // const title = formatTitle(testTitle, ...value)
           describe(title, testCallback.bind(null, ...value))
         } else {
-          const title = formatTitle(testTitle, value)
+          // const title = formatTitle(testTitle, value)
           describe(title, testCallback.bind(null, value))
         }
       })
