@@ -24,4 +24,19 @@ describe('Form test title using a function', () => {
     // @ts-ignore
     expect(this.test.title, 'computed test title').to.equal('test 1 for "foo"')
   })
+
+  it.each([
+    { name: 'Joe', age: 30 },
+    { name: 'Mary', age: 20 },
+  ])(
+    (person) => `tests person ${person.name}`,
+    function (user) {
+      expect(user).to.have.keys('name', 'age')
+      // @ts-ignore
+      expect(this.test.title, 'computed test title').to.be.oneOf([
+        'tests person Joe',
+        'tests person Mary',
+      ])
+    },
+  )
 })
