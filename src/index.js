@@ -28,6 +28,10 @@ function makeTitle(titlePattern, value, k, values) {
 
 if (!it.each) {
   it.each = function (values) {
+    if (!Array.isArray(values)) {
+      throw new Error('cypress-each: values must be an array')
+    }
+
     return function (titlePattern, testCallback) {
       values.forEach(function (value, k) {
         // const testTitle = titlePattern.replace('%k', k).replace('%K', k + 1)
@@ -57,6 +61,10 @@ if (!it.each) {
 
 if (!describe.each) {
   describe.each = function (values) {
+    if (!Array.isArray(values)) {
+      throw new Error('cypress-each: values must be an array')
+    }
+
     return function describeEach(titlePattern, testCallback) {
       // define a test for each value
       values.forEach((value, k) => {

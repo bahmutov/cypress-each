@@ -30,3 +30,6 @@ describe('using it.each', () => {
     expect(b.length).to.equal(3)
   })
 })
+
+// just an example for checking the thrown error
+// it.each()('throws meaningful error', () => {})
