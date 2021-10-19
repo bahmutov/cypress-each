@@ -138,6 +138,25 @@ it.each(items, 3, 1)(...)
 it.each(items, 3, 2)(...)
 ```
 
+## Exclusive tests
+
+Normally you could run just a selected test using `it.only` or a suite of tests using `describe.only`. Similarly, you could skip a single test or a suite of tests using `it.skip` and `describe.skip` methods. These methods are NOT supported by `it.each` and `describe.each`. Thus if you want to only run the `it.each` tests, surround it with its own `describe` block.
+
+```js
+// only run the generated tests
+describe.only('my tests', () => {
+  it.each(items)(...)
+})
+// skip these tests
+describe.skip('obsolete generated tests', () => {
+  it.each(items)(...)
+})
+// run just these suites of generated tests
+describe.only('my suites of tests', () => {
+  describe.each(items)(...)
+})
+```
+
 ## Examples
 
 - Watch [Using cypress-each To Create Separate Tests](https://youtu.be/utPKRV_fL1E)
