@@ -11,6 +11,25 @@ function formatTitle(pattern, ...values) {
   return format.apply(null, [pattern].concat(values.slice(0, count)))
 }
 
+function getChunk(values, totalChunks, chunkIndex) {
+  // split all items into N chunks and take just a single chunk
+  if (totalChunks < 0) {
+    throw new Error('totalChunks must be >= 0')
+  }
+
+  if (chunkIndex < 0 || chunkIndex >= totalChunks) {
+    throw new Error(
+      `Invalid chunk index ${chunkIndex} vs all chunks ${totalChunks}`,
+    )
+  }
+
+  const chunkSize = Math.ceil(values.length / totalChunks)
+  const chunkStart = chunkIndex * chunkSize
+  const chunkEnd = chunkStart + chunkSize
+  const chunk = values.slice(chunkStart, chunkEnd)
+  return chunk
+}
+
 function makeTitle(titlePattern, value, k, values) {
   if (typeof titlePattern === 'string') {
     const testTitle = titlePattern.replace('%k', k).replace('%K', k + 1)
@@ -27,12 +46,17 @@ function makeTitle(titlePattern, value, k, values) {
 }
 
 if (!it.each) {
-  it.each = function (values) {
+  it.each = function (values, totalChunks, chunkIndex) {
     if (!Array.isArray(values)) {
       throw new Error('cypress-each: values must be an array')
     }
 
     return function (titlePattern, testCallback) {
+      if (typeof totalChunks === 'number' && typeof chunkIndex === 'number') {
+        // split all items into N chunks and take just a single chunk
+        values = getChunk(values, totalChunks, chunkIndex)
+      }
+
       values.forEach(function (value, k) {
         // const testTitle = titlePattern.replace('%k', k).replace('%K', k + 1)
         const title = makeTitle(titlePattern, value, k, values)
@@ -65,6 +89,11 @@ if (!describe.each) {
       throw new Error('cypress-each: values must be an array')
     }
 
+    if (typeof totalChunks === 'number' && typeof chunkIndex === 'number') {
+      // split all items into N chunks and take just a single chunk
+      values = getChunk(values, totalChunks, chunkIndex)
+    }
+
     return function describeEach(titlePattern, testCallback) {
       // define a test for each value
       values.forEach((value, k) => {
@@ -89,4 +118,4 @@ if (!describe.each) {
   }
 }
 
-module.exports = { formatTitle }
+module.exports = { formatTitle, getChunk }

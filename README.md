@@ -118,6 +118,26 @@ it.each([
 
 See [cypress/integration/title-function.js](./cypress/integration/ title-function.js) for more examples
 
+## Chunking
+
+There is a built-in chunking helper in `describe.each` and `it.each` to only take a subset of the items. For example, to split all items into 3 chunks, and take the middle one, use
+
+```js
+it.each(items, 3, 1)(...)
+```
+
+The other spec files can take the other chunks. The index starts at 0, and should be less than the number of chunks.
+
+```js
+// split all items among 3 specs
+// spec-a.js
+it.each(items, 3, 0)(...)
+// spec-b.js
+it.each(items, 3, 1)(...)
+// spec-c.js
+it.each(items, 3, 2)(...)
+```
+
 ## Examples
 
 - Watch [Using cypress-each To Create Separate Tests](https://youtu.be/utPKRV_fL1E)
