@@ -6,6 +6,10 @@
 - [Dynamic API Tests Using Cypress-Each Plugin](https://glebbahmutov.com/blog/dynamic-api-tests-using-cypress-each/)
 - [Refactor Tests To Be Independent And Fast Using Cypress-Each Plugin](https://glebbahmutov.com/blog/refactor-using-each/)
 
+## Videos
+
+- Watch [Using cypress-each To Create Separate Tests](https://youtu.be/utPKRV_fL1E)
+
 ## Install and use
 
 ```
@@ -157,10 +161,17 @@ describe.only('my suites of tests', () => {
 })
 ```
 
-## Examples
+## Test configuration object
 
-- Watch [Using cypress-each To Create Separate Tests](https://youtu.be/utPKRV_fL1E)
-- Read [Dynamic API Tests Using Cypress-Each Plugin](https://glebbahmutov.com/blog/dynamic-api-tests-using-cypress-each/)
+Cypress allows to pass some of its configuration options in the `it` and `describe` arguments, see [the configuration](https://on.cypress.io/configuration) page. These methods `it.each` and `describe.each` do not support this, but you can create a wrapper `describe` block and set the options there, if needed.
+
+```js
+// if a test inside this suite fails,
+// retry it up to two times before failing it
+describe('user', { retries: 2 }, () => {
+  it.each(users)(...)
+})
+```
 
 ## Specs
 
