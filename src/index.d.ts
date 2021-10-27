@@ -7,8 +7,8 @@ type TestTitleFn<T> = (item: T, index: number, items: T[]) => string
 declare namespace Mocha {  
   type TestCallback<T extends readonly any[]> =
     T extends [] ? (this:Contexte,arg1:any,arg2:any) => void : 
-    Parameters<(...res: [...T, ?any, ?any]) => void> extends [...infer R] ?
-    R extends readonly [...T, ?any, ?any] ?
+    Parameters<(...res: [...T, any, any]) => void> extends [...infer R] ?
+    R extends readonly [...T, any, any] ?
     (this:Contexte,...res: [...R]) => void : never : never
 
   interface TestFunction {
