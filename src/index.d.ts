@@ -11,14 +11,14 @@ declare namespace Mocha {
     /**
      * Iterates over each given item (optionally chunked), and creates
      * a separate test for each one.
-     * @param values Input items to create the tests form
+     * @param values Input items to create the tests form OR number of times to repeat a test
      * @param totalChunks (Optional) number of chunks to split the items into
      * @param chunkIndex (Optional) index of the chunk to get items from
      * @example it.each([1, 2, 3])('test %K', (x) => ...)
      * @see https://github.com/bahmutov/cypress-each
      */
     each<T = unknown>(
-      values: T[],
+      values: T[] | number,
       totalChunks?: number,
       chunkIndex?: number,
     ): (titlePattern: string | TestTitleFn<T>, fn: TestCallback<T>) => void
@@ -35,7 +35,7 @@ declare namespace Mocha {
      * @see https://github.com/bahmutov/cypress-each
      */
     each<T = unknown>(
-      values: T[],
+      values: T[] | number,
       totalChunks?: number,
       chunkIndex?: number,
     ): (titlePattern: string | TestTitleFn<T>, fn: TestCallback<T>) => void

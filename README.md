@@ -64,6 +64,25 @@ it.each(data)('element %s should %s', (selector, assertion) => {
 // "element .new-todo should not.be.visible"
 ```
 
+## Repeat the test N times
+
+You can use this module to simply repeat the test N times
+
+```js
+// repeat the same test 5 times
+it.each(5)('test %K of 5', function (k) {
+  // note the iteration index k is passed to each test
+  expect(k).to.be.within(0, 4)
+})
+
+// you can repeat the suite of tests
+describe.each(3)('suite %K of 3', function (k) {
+  ...
+})
+```
+
+See the [repeat-spec.js](./cypress/integration/repeat-spec.js)
+
 ## Test and suite titles
 
 You can use the arguments to the test callback in the test title in order.

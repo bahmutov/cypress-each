@@ -47,6 +47,14 @@ function makeTitle(titlePattern, value, k, values) {
 
 if (!it.each) {
   it.each = function (values, totalChunks, chunkIndex) {
+    if (typeof values === 'number') {
+      // the user wants to repeat the same test N times
+      if (values < 1) {
+        throw new Error('Number of test repetitions must be >= 1')
+      }
+      values = Cypress._.range(0, values)
+    }
+
     if (!Array.isArray(values)) {
       throw new Error('cypress-each: values must be an array')
     }
@@ -85,6 +93,14 @@ if (!it.each) {
 
 if (!describe.each) {
   describe.each = function (values) {
+    if (typeof values === 'number') {
+      // the user wants to repeat the same suite N times
+      if (values < 1) {
+        throw new Error('Number of suite repetitions must be >= 1')
+      }
+      values = Cypress._.range(0, values)
+    }
+
     if (!Array.isArray(values)) {
       throw new Error('cypress-each: values must be an array')
     }
