@@ -66,7 +66,6 @@ if (!it.each) {
       }
 
       values.forEach(function (value, k) {
-        // const testTitle = titlePattern.replace('%k', k).replace('%K', k + 1)
         const title = makeTitle(titlePattern, value, k, values)
         if (!title) {
           throw new Error(
@@ -113,7 +112,6 @@ if (!describe.each) {
     return function describeEach(titlePattern, testCallback) {
       // define a test for each value
       values.forEach((value, k) => {
-        // const testTitle = titlePattern.replace('%k', k).replace('%K', k + 1)
         const title = makeTitle(titlePattern, value, k, values)
 
         if (!title) {
@@ -134,4 +132,4 @@ if (!describe.each) {
   }
 }
 
-module.exports = { formatTitle, getChunk }
+module.exports = { formatTitle, makeTitle, getChunk }
