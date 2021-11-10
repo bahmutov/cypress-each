@@ -5,10 +5,12 @@
 
 - [Dynamic API Tests Using Cypress-Each Plugin](https://glebbahmutov.com/blog/dynamic-api-tests-using-cypress-each/)
 - [Refactor Tests To Be Independent And Fast Using Cypress-Each Plugin](https://glebbahmutov.com/blog/refactor-using-each/)
+- [Test your sitemap using Cypress](https://glebbahmutov.com/blog/test-sitemap/)
 
 ## Videos
 
-- Watch [Using cypress-each To Create Separate Tests](https://youtu.be/utPKRV_fL1E)
+- [Using cypress-each To Create Separate Tests](https://youtu.be/utPKRV_fL1E)
+- [Test Each URL From Sitemap In Its Own Separate Cypress Test](https://youtu.be/qkofPocd7lY)
 
 ## Install and use
 
