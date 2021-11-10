@@ -32,7 +32,10 @@ function getChunk(values, totalChunks, chunkIndex) {
 
 function makeTitle(titlePattern, value, k, values) {
   if (typeof titlePattern === 'string') {
-    const testTitle = titlePattern.replace('%k', k).replace('%K', k + 1)
+    const testTitle = titlePattern
+      .replace('%k', k)
+      .replace('%K', k + 1)
+      .replace('%N', values.length)
     if (Array.isArray(value)) {
       return formatTitle(testTitle, ...value)
     } else {
@@ -66,7 +69,6 @@ if (!it.each) {
       }
 
       values.forEach(function (value, k) {
-        // const testTitle = titlePattern.replace('%k', k).replace('%K', k + 1)
         const title = makeTitle(titlePattern, value, k, values)
         if (!title) {
           throw new Error(
@@ -113,7 +115,6 @@ if (!describe.each) {
     return function describeEach(titlePattern, testCallback) {
       // define a test for each value
       values.forEach((value, k) => {
-        // const testTitle = titlePattern.replace('%k', k).replace('%K', k + 1)
         const title = makeTitle(titlePattern, value, k, values)
 
         if (!title) {
@@ -134,4 +135,4 @@ if (!describe.each) {
   }
 }
 
-module.exports = { formatTitle, getChunk }
+module.exports = { formatTitle, makeTitle, getChunk }

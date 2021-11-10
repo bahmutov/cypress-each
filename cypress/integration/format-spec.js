@@ -4,7 +4,7 @@
 // @ts-ignore
 require('../..')
 // @ts-ignore
-const { formatTitle } = require('../../src/index.js')
+const { formatTitle, makeTitle } = require('../../src/index.js')
 
 describe('format', () => {
   const person = {
@@ -37,4 +37,24 @@ describe('format', () => {
       expect(life).to.equal(42)
     },
   )
+})
+
+describe('makeTitle', () => {
+  const values = [1, 2, 3]
+
+  it('makes title using %K', () => {
+    expect(makeTitle('one is %K', 1, 0, values)).to.equal('one is 1')
+  })
+
+  it('makes title using %k and value', () => {
+    expect(makeTitle('at index %k is value %d', 42, 0, values)).to.equal(
+      'at index 0 is value 42',
+    )
+  })
+
+  it('makes title using number of values', () => {
+    expect(makeTitle('value %d is %K of %N', 42, 0, values)).to.equal(
+      'value 42 is 1 of 3',
+    )
+  })
 })
