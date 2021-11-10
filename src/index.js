@@ -32,7 +32,10 @@ function getChunk(values, totalChunks, chunkIndex) {
 
 function makeTitle(titlePattern, value, k, values) {
   if (typeof titlePattern === 'string') {
-    const testTitle = titlePattern.replace('%k', k).replace('%K', k + 1)
+    const testTitle = titlePattern
+      .replace('%k', k)
+      .replace('%K', k + 1)
+      .replace('%N', values.length)
     if (Array.isArray(value)) {
       return formatTitle(testTitle, ...value)
     } else {

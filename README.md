@@ -112,6 +112,15 @@ it.each([10, 20, 30])('checking item %K', (x) => { ... })
 // "checking item 3"
 ```
 
+You can use `%N` to insert the total number of items
+
+```js
+it.each(['first', 'second'])('test %K of %N', (x) => { ... })
+// creates the tests
+// "test 1 of 2"
+// "test 2 of 2"
+```
+
 ### Title function
 
 You can form the test title yourself using a function. The function will get the item, the index, and all items and should return a string with the test title.

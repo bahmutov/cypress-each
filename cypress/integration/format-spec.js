@@ -51,4 +51,10 @@ describe('makeTitle', () => {
       'at index 0 is value 42',
     )
   })
+
+  it('makes title using number of values', () => {
+    expect(makeTitle('value %d is %K of %N', 42, 0, values)).to.equal(
+      'value 42 is 1 of 3',
+    )
+  })
 })
