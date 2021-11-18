@@ -188,6 +188,15 @@ it.each(items, 3, 1)(...)
 it.each(items, 3, 2)(...)
 ```
 
+## Custom filter predicate
+
+You can filter the items by passing a predicate function
+
+```js
+it.each(items, (x, k) => ...)
+// creates a test for every item the predicate returns a truthy value
+```
+
 ## Exclusive tests
 
 Normally you could run just a selected test using `it.only` or a suite of tests using `describe.only`. Similarly, you could skip a single test or a suite of tests using `it.skip` and `describe.skip` methods. These methods are NOT supported by `it.each` and `describe.each`. Thus if you want to only run the `it.each` tests, surround it with its own `describe` block.

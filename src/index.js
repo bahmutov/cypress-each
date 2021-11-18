@@ -72,6 +72,9 @@ if (!it.each) {
       ) {
         // take every Nth item
         values = values.filter((_, k) => k % totalChunks === 0)
+      } else if (typeof totalChunks === 'function') {
+        // filter using the given predicate
+        values = values.filter(totalChunks)
       }
 
       values.forEach(function (value, k) {
