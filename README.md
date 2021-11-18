@@ -152,6 +152,22 @@ it.each([
 
 See [cypress/integration/title-function.js](./cypress/integration/ title-function.js) for more examples
 
+## Every Nth item
+
+You can quickly take every Nth item from an array
+
+```js
+it.each(items, N)(...)
+```
+
+This is the same as taking the index of the item (zero-based) and doing `k % N === 0`
+
+```js
+const items = [1, 2, 3, 4, 5, 6, ...]
+it.each(items, 3)(...)
+// tests item 1, 4, 7, ...
+```
+
 ## Chunking
 
 There is a built-in chunking helper in `describe.each` and `it.each` to only take a subset of the items. For example, to split all items into 3 chunks, and take the middle one, use

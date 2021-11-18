@@ -66,6 +66,12 @@ if (!it.each) {
       if (typeof totalChunks === 'number' && typeof chunkIndex === 'number') {
         // split all items into N chunks and take just a single chunk
         values = getChunk(values, totalChunks, chunkIndex)
+      } else if (
+        typeof totalChunks === 'number' &&
+        typeof chunkIndex === 'undefined'
+      ) {
+        // take every Nth item
+        values = values.filter((_, k) => k % totalChunks === 0)
       }
 
       values.forEach(function (value, k) {
