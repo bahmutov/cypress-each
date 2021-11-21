@@ -206,6 +206,15 @@ it.each(items, (x, k) => ...)
 // creates a test for every item the predicate returns a truthy value
 ```
 
+## Return value
+
+`it.each(...)(...)` and `describe.each(...)(...)` return the number of created tests.
+
+```js
+const n = it.each([1, 2])(...)
+// n is 2
+```
+
 ## Exclusive tests
 
 Normally you could run just a selected test using `it.only` or a suite of tests using `describe.only`. Similarly, you could skip a single test or a suite of tests using `it.skip` and `describe.skip` methods. These methods are NOT supported by `it.each` and `describe.each`. Thus if you want to only run the `it.each` tests, surround it with its own `describe` block.

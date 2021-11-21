@@ -98,6 +98,9 @@ if (!it.each) {
           })
         }
       }, this)
+
+      // returns the number of created tests
+      return values.length
     }
   }
 }
@@ -140,6 +143,9 @@ if (!describe.each) {
           describe(title, testCallback.bind(null, value))
         }
       })
+
+      // returns the number of created suites
+      return values.length
     }
   }
 }

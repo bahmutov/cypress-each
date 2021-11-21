@@ -3,7 +3,10 @@
 
 import '../..'
 
-describe.each(['A', 1])('%s', (x) => {
+const n = describe.each(['A', 1])('%s', (x) => {
+  before(() => {
+    expect(n, 'number of created suites').to.equal(2)
+  })
   // we can use the values passed into the "describe" callback
   // because these are closure variables
   it(`checks out for ${x}`, () => {
