@@ -188,6 +188,15 @@ it.each(items, 3, 1)(...)
 it.each(items, 3, 2)(...)
 ```
 
+## Sampling
+
+Cypress bundles [Lodash](https://lodash.com/) library which includes `_.sampleSize` method that you can use to randomly pick N items when passing the list to `it.each`
+
+```js
+// pick 2 random items from the array and create 2 tests
+it.each(Cypress._.sampleSize(items, 2))(...)
+```
+
 ## Custom filter predicate
 
 You can filter the items by passing a predicate function
