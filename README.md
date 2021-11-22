@@ -11,6 +11,7 @@
 
 - [Using cypress-each To Create Separate Tests](https://youtu.be/utPKRV_fL1E)
 - [Test Each URL From Sitemap In Its Own Separate Cypress Test](https://youtu.be/qkofPocd7lY)
+- [Using Faker to generate test data and execute separate tests using cypress-each plugin](https://youtu.be/WO3ujoEhVUc)
 
 ## Install and use
 
