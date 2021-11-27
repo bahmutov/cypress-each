@@ -17,7 +17,7 @@
   "license": "MIT",
   "devDependencies": {
     "cypress": "9.1.0",
-    "cypress-expect": "2.5.0",
+    "cypress-expect": "2.5.1",
     "mocha-each": "^2.0.1",
     "prettier": "^2.4.1",
     "semantic-release": "18.0.1",
