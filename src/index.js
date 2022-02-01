@@ -106,7 +106,7 @@ if (!it.each) {
 }
 
 if (!describe.each) {
-  describe.each = function (values) {
+  context.each = describe.each = function (values) {
     if (typeof values === 'number') {
       // the user wants to repeat the same suite N times
       if (values < 1) {
