@@ -1,4 +1,5 @@
 # cypress-each ![cypress version](https://img.shields.io/badge/cypress-9.4.1-brightgreen) [![renovate-app badge][renovate-badge]][renovate-app] [![ci](https://github.com/bahmutov/cypress-each/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/bahmutov/cypress-each/actions/workflows/ci.yml)
+
 > A demo of mocha-each and custom describe.each and it.each implementation for Cypress
 
 ## Blog posts
@@ -54,8 +55,7 @@ You can pass multiple arguments into the callback function by using an array of 
 const data = [
   // each entry is an array [selector, assertion]
   ['header', 'be.visible'],
-  ['footer', 'exist']
-  ['.new-todo', 'not.be.visible']
+  ['footer', 'exist'][('.new-todo', 'not.be.visible')],
 ]
 it.each(data)('element %s should %s', (selector, assertion) => {
   cy.visit('/')
@@ -121,6 +121,10 @@ it.each(['first', 'second'])('test %K of %N', (x) => { ... })
 // "test 1 of 2"
 // "test 2 of 2"
 ```
+
+Example: `it.each([10, 20, 30])('case %K: an item costs $%d.00 on sale', ...`
+
+![Formatted test titles](./images/titles.png)
 
 ### Title function
 
@@ -278,7 +282,7 @@ Include this module with other library types, like
 ```json
 {
   "compilerOptions": {
-    "types": ["cypress", "cypress-each"],
+    "types": ["cypress", "cypress-each"]
   }
 }
 ```
