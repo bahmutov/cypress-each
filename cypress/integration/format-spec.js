@@ -6,6 +6,20 @@ require('../..')
 // @ts-ignore
 const { formatTitle, makeTitle } = require('../../src/index.js')
 
+describe('formatted title', () => {
+  // each value will be automatically inserted into the formatted test title
+  it.each([10, 20, 30])('case %K: an item costs $%d.00 on sale', function (x) {
+    expect(x, 'item cost').to.be.oneOf([10, 20, 30])
+    if (this.test) {
+      expect(this.test.title).to.be.oneOf([
+        'case 1: an item costs $10.00 on sale',
+        'case 2: an item costs $20.00 on sale',
+        'case 3: an item costs $30.00 on sale',
+      ])
+    }
+  })
+})
+
 describe('format', () => {
   const person = {
     name: 'Joe',
