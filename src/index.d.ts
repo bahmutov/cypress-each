@@ -5,8 +5,12 @@
 type TestTitleFn<T> = (item: T, index: number, items: T[]) => string
 type ItemPredicateFunction<T> = (item: T, index: number, items: T[]) => boolean
 
-declare namespace Mocha {
-  type TestCallback<T> = (this: Context, arg0: T, arg1: any, arg2: any) => void
+declare namespace Mocha {  
+  type TestCallback<T extends readonly any[]> =
+    T extends [] ? (this:Contexte,arg1:any,arg2:any) => void : 
+    Parameters<(...res: [...T, any, any]) => void> extends [...infer R] ?
+    R extends readonly [...T, any, any] ?
+    (this:Contexte,...res: [...R]) => void : never : never
 
   interface TestFunction {
     /**
@@ -18,13 +22,18 @@ declare namespace Mocha {
      * @example it.each([1, 2, 3])('test %K', (x) => ...)
      * @see https://github.com/bahmutov/cypress-each
      */
+    each<T extends readonly [...T]>(
+      values:  Array<readonly [...T]>,
+      totalChunks?: number,
+      chunkIndex?: number,
+    ): (titlePattern: string | TestTitleFn<[...T]>, fn: TestCallback<[...T]>) => void
     each<T = unknown>(
       values: T[] | number,
       totalChunks?: number | ItemPredicateFunction<T>,
       chunkIndex?: number,
-    ): (titlePattern: string | TestTitleFn<T>, fn: TestCallback<T>) => void
+    ): (titlePattern: string | TestTitleFn<T>, fn: TestCallback<[T]>) => void  
   }
-
+  
   interface SuiteFunction {
     /**
      * Iterates over each given item (optionally chunked), and creates
