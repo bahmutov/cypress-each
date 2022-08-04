@@ -251,6 +251,35 @@ describe('user', { retries: 2 }, () => {
 })
 ```
 
+## Run specs in parallel
+
+See the explanation in the blog post [Refactor Tests To Be Independent And Fast Using Cypress-Each Plugin](https://glebbahmutov.com/blog/refactor-using-each/), but basically you create separate specs file, and each just uses `cypress-each` to run a subset of the tests
+
+```js
+// utils.js
+export const testTitle = (selector, k) =>
+  `testing ${k + 1} ...`
+
+export const testDataItem = (item) => {
+  ...
+}
+
+// spec1.js
+import { data } from '...'
+import { testTitle, testDataItem } from './utils'
+it.each(data, 3, 0)(testTitle, testDataItem)
+
+// spec2.js
+import { data } from '...'
+import { testTitle, testDataItem } from './utils'
+it.each(data, 3, 1)(testTitle, testDataItem)
+
+// spec3.js
+import { data } from '...'
+import { testTitle, testDataItem } from './utils'
+it.each(data, 3, 2)(testTitle, testDataItem)
+```
+
 ## Specs
 
 Find the implementation in [src/index.js](./src/index.js)
