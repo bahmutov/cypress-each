@@ -32,11 +32,17 @@ function getChunk(values, totalChunks, chunkIndex) {
 
 function makeTitle(titlePattern, value, k, values) {
   if (typeof titlePattern === 'string') {
-    const testTitle = titlePattern
+    let testTitle = titlePattern
       .replace('%k', k)
       .replace('%K', k + 1)
       .replace('%N', values.length)
     if (Array.isArray(value)) {
+      // apply any positional arguments
+      // https://github.com/bahmutov/cypress-each/issues/50
+      testTitle = testTitle
+        .replace('%0', value[0])
+        .replace('%1', value[1])
+        .replace('%2', value[2])
       return formatTitle(testTitle, ...value)
     } else {
       return formatTitle(testTitle, value)
