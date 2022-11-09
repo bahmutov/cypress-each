@@ -98,6 +98,18 @@ it.each([10, 20, 30])('number is %d', (x) => { ... })
 // "number is 30"
 ```
 
+You can also insert the arguments from the test callback via positions (0-based) into the title
+
+```js
+const list = [
+  ['foo', 'main'],
+  ['bar', 'edge'],
+]
+it.each(list)('testing %1 value %0')
+// "testing main value foo"
+// "testing edge value bar"
+```
+
 If you want to use the iteration variable in the title, use `%k` for zero-based index, or `%K` for one-based index.
 
 ```js
