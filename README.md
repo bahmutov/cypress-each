@@ -2,6 +2,8 @@
 
 > A demo of mocha-each and custom describe.each and it.each implementation for Cypress
 
+🎓 Study the course [Cypress Plugins](https://cypress.tips/courses/cypress-plugins)
+
 ## Blog posts
 
 - [Dynamic API Tests Using Cypress-Each Plugin](https://glebbahmutov.com/blog/dynamic-api-tests-using-cypress-each/)
