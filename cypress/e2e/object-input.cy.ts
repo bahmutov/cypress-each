@@ -22,7 +22,7 @@ describe('converted to an array of arrays', () => {
 
 // https://github.com/bahmutov/cypress-each/issues/53
 describe('automatic conversion', () => {
-  it.each(testCases)((a, b, expectedResult) => {
+  it.each(testCases)((a: number, b: number, expectedResult: number) => {
     expect(add(a, b)).to.equal(expectedResult)
   })
 

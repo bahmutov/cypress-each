@@ -7,6 +7,12 @@ type ItemPredicateFunction<T> = (item: T, index: number, items: T[]) => boolean
 
 declare namespace Mocha {
   type TestCallback<T> = (this: Context, arg0: T, arg1: any, arg2: any) => void
+  type TestCallbackAny = (
+    this: Context,
+    arg0: any,
+    arg1: any,
+    arg2: any,
+  ) => void
 
   interface TestFunction {
     /**
@@ -37,7 +43,7 @@ declare namespace Mocha {
      *  }
      *  it.each(testCases)((a, b, result) => { ... })
      */
-    each(testCases: object): (fn: TestCallback<T>) => void
+    each(testCases: object): (fn: TestCallbackAny) => void
   }
 
   interface SuiteFunction {
