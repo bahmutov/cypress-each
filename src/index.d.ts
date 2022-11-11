@@ -7,6 +7,12 @@ type ItemPredicateFunction<T> = (item: T, index: number, items: T[]) => boolean
 
 declare namespace Mocha {
   type TestCallback<T> = (this: Context, arg0: T, arg1: any, arg2: any) => void
+  type TestCallbackAny = (
+    this: Context,
+    arg0: any,
+    arg1: any,
+    arg2: any,
+  ) => void
 
   interface TestFunction {
     /**
@@ -23,6 +29,21 @@ declare namespace Mocha {
       totalChunks?: number | ItemPredicateFunction<T>,
       chunkIndex?: number,
     ): (titlePattern: string | TestTitleFn<T>, fn: TestCallback<T>) => void
+
+    /**
+     * A single test case object where the keys are test titles,
+     * and the values are used as inputs to the test callback
+     * @see https://github.com/bahmutov/cypress-each#test-case-object
+     * @example
+     *  const testCases = {
+     *    // key: the test label
+     *    // value: list of inputs for each test case
+     *    'positive numbers': [1, 6, 7], // [a, b, expected result]
+     *    'negative numbers': [1, -6, -5],
+     *  }
+     *  it.each(testCases)((a, b, result) => { ... })
+     */
+    each(testCases: object): (fn: TestCallbackAny) => void
   }
 
   interface SuiteFunction {
