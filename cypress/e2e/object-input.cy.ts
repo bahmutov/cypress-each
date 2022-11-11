@@ -21,8 +21,23 @@ describe('converted to an array of arrays', () => {
 })
 
 // https://github.com/bahmutov/cypress-each/issues/53
-describe.skip('automatic conversion', () => {
+describe('automatic conversion', () => {
   it.each(testCases)((a, b, expectedResult) => {
     expect(add(a, b)).to.equal(expectedResult)
+  })
+
+  context('plain values', () => {
+    const evenCases = {
+      two: 2,
+      four: 4,
+    }
+
+    function isEven(x: number) {
+      return x % 2 === 0
+    }
+
+    it.each(evenCases)((x) => {
+      expect(x).to.satisfy(isEven)
+    })
   })
 })

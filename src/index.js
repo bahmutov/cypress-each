@@ -64,8 +64,10 @@ if (!it.each) {
       values = Cypress._.range(0, values)
     }
 
-    if (!Array.isArray(values)) {
-      throw new Error('cypress-each: values must be an array')
+    if (typeof totalChunks === 'number') {
+      if (!Array.isArray(values)) {
+        throw new Error('cypress-each: values must be an array')
+      }
     }
 
     return function (titlePattern, testCallback) {
@@ -83,30 +85,57 @@ if (!it.each) {
         values = values.filter(totalChunks)
       }
 
-      values.forEach(function (value, k) {
-        const title = makeTitle(titlePattern, value, k, values)
-        if (!title) {
+      if (Cypress._.isPlainObject(values)) {
+        testCallback = titlePattern
+        if (typeof testCallback !== 'function') {
           throw new Error(
-            `Could not compute the test title ${k} for value ${value}`,
+            'When using a single test case object, cannot provide title pattern',
           )
         }
 
-        // define a test for each value
-        if (Array.isArray(value)) {
-          // const title = formatTitle(testTitle, ...value)
-          it(title, function itArrayCallback() {
-            return testCallback.apply(this, value)
-          })
-        } else {
-          // const title = formatTitle(testTitle, value)
-          it(title, function itCallback() {
-            return testCallback.call(this, value)
-          })
-        }
-      }, this)
+        const pairs = Cypress._.toPairs(values)
+        pairs.forEach(function (pair) {
+          const [title, value] = pair
+          // define a test for each value
+          if (Array.isArray(value)) {
+            it(title, function itArrayCallback() {
+              return testCallback.apply(this, value)
+            })
+          } else {
+            it(title, function itCallback() {
+              return testCallback.call(this, value)
+            })
+          }
+        }, this)
+      } else if (Array.isArray(values)) {
+        values.forEach(function (value, k) {
+          const title = makeTitle(titlePattern, value, k, values)
+          if (!title) {
+            throw new Error(
+              `Could not compute the test title ${k} for value ${value}`,
+            )
+          }
 
-      // returns the number of created tests
-      return values.length
+          // define a test for each value
+          if (Array.isArray(value)) {
+            it(title, function itArrayCallback() {
+              return testCallback.apply(this, value)
+            })
+          } else {
+            it(title, function itCallback() {
+              return testCallback.call(this, value)
+            })
+          }
+        }, this)
+
+        // returns the number of created tests
+        return values.length
+      } else {
+        console.error(values)
+        throw new Error(
+          'Do not know how to create tests from the values array / object. See DevTools console',
+        )
+      }
     }
   }
 }
