@@ -294,6 +294,22 @@ import { testTitle, testDataItem } from './utils'
 it.each(data, 3, 2)(testTitle, testDataItem)
 ```
 
+## Test case object
+
+Sometimes you just want to have a single object that has all the tests cases together with the inputs. You can pass an object instead of an array to the `it.each` function. Each object key will become the test title, and the value will be passed to the test callback. If the value is an array, it will be destructured. See [object-input.cy.ts](./cypress/e2e/object-input.cy.ts) spec file for details.
+
+```ts
+const testCases = {
+  // key: the test label
+  // value: list of inputs for each test case
+  'positive numbers': [1, 6, 7], // [a, b, expected result]
+  'negative numbers': [1, -6, -5],
+}
+it.each(testCases)((a, b, expectedResult) => {
+  expect(add(a, b)).to.equal(expectedResult)
+})
+```
+
 ## Specs
 
 Find the implementation in [src/index.js](./src/index.js)
