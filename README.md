@@ -310,6 +310,8 @@ it.each(testCases)((a, b, expectedResult) => {
 })
 ```
 
+Note that in most cases, the `it.each(TestCases)` tries to "guess" the types from the array value to the test callback function.
+
 ## Specs
 
 Find the implementation in [src/index.js](./src/index.js)

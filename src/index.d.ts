@@ -5,13 +5,27 @@
 type TestTitleFn<T> = (item: T, index: number, items: T[]) => string
 type ItemPredicateFunction<T> = (item: T, index: number, items: T[]) => boolean
 
+type TestCaseObject3<T0, T1, T2> = {
+  [index: string]: [T0, T1, T2]
+}
+
+type TestCaseObject2<T0, T1> = {
+  [index: string]: [T0, T1]
+}
+
+type TestCaseObject<T> = {
+  [index: string]: T
+}
+
 declare namespace Mocha {
   type TestCallback<T> = (this: Context, arg0: T, arg1: any, arg2: any) => void
-  type TestCallbackAny = (
+  type TestCallback1<T0> = (this: Context, arg0: T0) => void
+  type TestCallback2<T0, T1> = (this: Context, arg0: T0, arg1: T1) => void
+  type TestCallback3<T0, T1, T2> = (
     this: Context,
-    arg0: any,
-    arg1: any,
-    arg2: any,
+    arg0: T0,
+    arg1: T1,
+    arg2: T2,
   ) => void
 
   interface TestFunction {
@@ -43,7 +57,39 @@ declare namespace Mocha {
      *  }
      *  it.each(testCases)((a, b, result) => { ... })
      */
-    each(testCases: object): (fn: TestCallbackAny) => void
+    each<T0, T1, T2>(
+      testCases: TestCaseObject3<T0, T1, T2>,
+    ): (fn: TestCallback3<T0, T1, T2>) => void
+
+    /**
+     * A single test case object where the keys are test titles,
+     * and the values are used as inputs to the test callback
+     * @see https://github.com/bahmutov/cypress-each#test-case-object
+     * @example
+     *  const testCases = {
+     *    // key: the test label
+     *    // value: list of inputs for each test case
+     *    'positive numbers': [1, 6, 7], // [a, b, expected result]
+     *    'negative numbers': [1, -6, -5],
+     *  }
+     *  it.each(testCases)((a, b, result) => { ... })
+     */
+    each<T0, T1>(
+      testCases: TestCaseObject2<T0, T1>,
+    ): (fn: TestCallback2<T0, T1>) => void
+
+    /**
+     * A single test case object where the keys are test titles,
+     * and the single value are used as inputs to the test callback
+     * @see https://github.com/bahmutov/cypress-each#test-case-object
+     * @example
+     *  const testCases = {
+     *    'two': 2,
+     *    'three': 3,
+     *  }
+     *  it.each(testCases)((a) => { ... })
+     */
+    each<T0>(testCases: TestCaseObject<T0>): (fn: TestCallback1<T0>) => void
   }
 
   interface SuiteFunction {
