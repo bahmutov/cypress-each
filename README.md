@@ -310,7 +310,33 @@ it.each(testCases)((a, b, expectedResult) => {
 })
 ```
 
-Note that in most cases, the `it.each(TestCases)` tries to "guess" the types from the array value to the test callback function.
+### test case types
+
+Note that in most cases, the `it.each(TestCases)` tries to "guess" the types from the array value to the test callback function. When you need to, use the utility types to "explain" the value array:
+
+```ts
+// two arguments
+// each value is [number, string]
+const toString: TestCaseObject2<number, string> = {
+  one: [1, '1'],
+  ten: [10, '10'],
+}
+
+it.each(toString)((a, b) => {
+  // a is a number
+  // b is a string
+})
+
+// three arguments
+const additions: TestCaseObject3<number, number, string> = {
+  one: [1, 2, '3'], // a + b in string form
+  ten: [10, 20, '30'],
+}
+
+it.each(additions)((a, b, s) => {
+  expect(String(a + b)).to.equal(s)
+})
+```
 
 ## Specs
 
