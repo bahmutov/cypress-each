@@ -20,7 +20,7 @@
     "cypress-expect": "2.5.3",
     "mocha-each": "^2.0.1",
     "prettier": "^2.4.1",
-    "semantic-release": "21.0.1",
+    "semantic-release": "21.0.2",
     "typescript": "^4.8.4"
   },
   "repository": {
