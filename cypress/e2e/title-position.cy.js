@@ -8,7 +8,7 @@ describe('Positional title arguments', () => {
 
   // https://github.com/bahmutov/cypress-each/issues/76
   // @ts-ignore
-  it.each(list)('title is %1 and %0', (a, b) => {
+  it.each(list)('title is %1 and %0', function (a, b) {
     expect(a, 'first').to.equal('foo')
     expect(b, 'second').to.equal('main')
     // @ts-ignore
