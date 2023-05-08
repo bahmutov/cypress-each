@@ -57,7 +57,8 @@ You can pass multiple arguments into the callback function by using an array of 
 const data = [
   // each entry is an array [selector, assertion]
   ['header', 'be.visible'],
-  ['footer', 'exist'][('.new-todo', 'not.be.visible')],
+  ['footer', 'exist'],
+  ['.new-todo', 'not.be.visible'],
 ]
 it.each(data)('element %s should %s', (selector, assertion) => {
   cy.visit('/')
