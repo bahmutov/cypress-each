@@ -18,7 +18,13 @@ type TestCaseObject<T> = {
 }
 
 declare namespace Mocha {
-  type TestCallback<T> = (this: Context, arg0: T, arg1: any, arg2: any) => void
+  type TestCallback<T extends readonly any[]> = T extends []
+    ? (this: Context, arg1: any, arg2: any) => void
+    : Parameters<(...res: [...T, any, any]) => void> extends [...infer R]
+    ? R extends readonly [...T, any, any]
+      ? (this: Context, ...res: [...R]) => void
+      : never
+    : never
   type TestCallback1<T0> = (this: Context, arg0: T0) => void
   type TestCallback2<T0, T1> = (this: Context, arg0: T0, arg1: T1) => void
   type TestCallback3<T0, T1, T2> = (
@@ -38,11 +44,19 @@ declare namespace Mocha {
      * @example it.each([1, 2, 3])('test %K', (x) => ...)
      * @see https://github.com/bahmutov/cypress-each
      */
+    each<T extends readonly [...T]>(
+      values: Array<readonly [...T]>,
+      totalChunks?: number,
+      chunkIndex?: number,
+    ): (
+      titlePattern: string | TestTitleFn<[...T]>,
+      fn: TestCallback<[...T]>,
+    ) => void
     each<T = unknown>(
       values: T[] | number,
       totalChunks?: number | ItemPredicateFunction<T>,
       chunkIndex?: number,
-    ): (titlePattern: string | TestTitleFn<T>, fn: TestCallback<T>) => void
+    ): (titlePattern: string | TestTitleFn<T>, fn: TestCallback<[T]>) => void
 
     /**
      * A single test case object where the keys are test titles,
@@ -104,8 +118,8 @@ declare namespace Mocha {
      */
     each<T = unknown>(
       values: T[] | number,
-      totalChunks?: number,
+      totalChunks?: number | ItemPredicateFunction<T>,
       chunkIndex?: number,
-    ): (titlePattern: string | TestTitleFn<T>, fn: TestCallback<T>) => void
+    ): (titlePattern: string | TestTitleFn<T>, fn: TestCallback<[T]>) => void
   }
 }
