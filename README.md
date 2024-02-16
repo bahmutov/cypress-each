@@ -49,6 +49,16 @@ it.each(selectors)('element %s is visible', (selector) => {
 // "element .new-todo is visible"
 ```
 
+## item index
+
+In addition to the item, the callback receives the index
+
+```js
+it.each(selectors)('element %s is visible', (selector, k) => {
+  // k is 0, 1, 2, ...
+})
+```
+
 ## Multiple arguments
 
 You can pass multiple arguments into the callback function by using an array of arrays. For example, to check if an element is visible, invisible, or exists, you can have both a selector and the assertion string for each item.

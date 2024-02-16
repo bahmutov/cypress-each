@@ -119,11 +119,11 @@ if (!it.each) {
           // define a test for each value
           if (Array.isArray(value)) {
             it(title, function itArrayCallback() {
-              return testCallback.apply(this, value)
+              return testCallback.apply(this, value, k)
             })
           } else {
             it(title, function itCallback() {
-              return testCallback.call(this, value)
+              return testCallback.call(this, value, k)
             })
           }
         }, this)
