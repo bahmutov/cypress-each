@@ -4,6 +4,14 @@
 
 🎓 Study the course [Cypress Plugins](https://cypress.tips/courses/cypress-plugins)
 
+- [Lesson f9: Test the data edge cases by making API calls](https://cypress.tips/courses/cypress-plugins/lessons/f9)
+- [Lesson f10: Run the same test in different resolutions](https://cypress.tips/courses/cypress-plugins/lessons/f10)
+- [Lesson f11: Split the data-driven tests across several spec files](https://cypress.tips/courses/cypress-plugins/lessons/f11)
+- [Lesson f12: Store viewports in a JSON file or config](https://cypress.tips/courses/cypress-plugins/lessons/f12)
+- [Lesson f13: Create tests from fetched data](https://cypress.tips/courses/cypress-plugins/lessons/f13)
+- [Lesson f14: Create N predetermined tests](https://cypress.tips/courses/cypress-plugins/lessons/f14)
+- [Lesson f15: Test multiple pages](https://cypress.tips/courses/cypress-plugins/lessons/f15)
+
 ## Blog posts
 
 - [Dynamic API Tests Using Cypress-Each Plugin](https://glebbahmutov.com/blog/dynamic-api-tests-using-cypress-each/)
