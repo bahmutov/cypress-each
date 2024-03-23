@@ -1,4 +1,4 @@
-# cypress-each ![cypress version](https://img.shields.io/badge/cypress-13.7.0-brightgreen) [![renovate-app badge][renovate-badge]][renovate-app] [![ci](https://github.com/bahmutov/cypress-each/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/bahmutov/cypress-each/actions/workflows/ci.yml)
+# cypress-each ![cypress version](https://img.shields.io/badge/cypress-13.7.1-brightgreen) [![renovate-app badge][renovate-badge]][renovate-app] [![ci](https://github.com/bahmutov/cypress-each/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/bahmutov/cypress-each/actions/workflows/ci.yml)
 
 > A demo of mocha-each and custom describe.each and it.each implementation for Cypress
 
