@@ -140,6 +140,20 @@ if (!it.each) {
   }
 }
 
+if (!it.only.each) {
+  it.only.each = function (values, totalChunks, chunkIndex) {
+    return function (titlePattern, testCallback) {
+      values.forEach(function (value, k) {
+        const title = makeTitle(titlePattern, value, k, values)
+        it.only(title, function itCallback() {
+          return testCallback.call(this, value, k)
+        })
+      })
+      return values.length
+    }
+  }
+}
+
 if (!describe.each) {
   context.each = describe.each = function (values) {
     if (typeof values === 'number') {
