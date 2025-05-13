@@ -357,6 +357,36 @@ it.each(additions)((a, b, s) => {
 })
 ```
 
+## Static data
+
+⚠️ **Important:**
+
+In order for this plugin to _create_ tests, the data must be available _before_ any tests are running. Thus we _cannot_ use `cy.fixture` to load the data and "give" it to `cypress-each`.
+
+```js
+🚨 DOES NOT WORK
+let list
+before(() => {
+  cy.fixture('list.json').then(data => list = data)
+})
+it.each(list)(...)
+// Nope, the list will always be undefined
+```
+
+There are a couple of workarounds:
+
+- import JSON data directly into the spec
+
+```js
+// ✅ static JSON import
+import list from '../fixtures/list.json'
+it.each(list)(...)
+```
+
+- load the data from the config file and pass it via `Cypress.env`
+
+See the [Cypress Plugins](https://cypress.tips/courses/cypress-plugins) course for hands-on examples.
+
 ## Specs
 
 Find the implementation in [src/index.js](./src/index.js)
