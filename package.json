@@ -16,7 +16,7 @@
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "cypress": "14.3.0",
+    "cypress": "15.0.0",
     "cypress-expect": "2.5.3",
     "mocha-each": "^2.0.1",
     "prettier": "^2.4.1",
