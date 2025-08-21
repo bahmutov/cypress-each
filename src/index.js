@@ -1,7 +1,12 @@
 /// <reference types="cypress" />
 
-// standard Node module "util" has "format" function
-const { format } = require('util')
+// https://github.com/tmpfs/format-util
+// equivalent to Node.js util.format
+const format = require('format-util')
+
+if (typeof format !== 'function') {
+  throw new Error('Missing format-util function')
+}
 
 function formatTitle(pattern, ...values) {
   // count how many format placeholders are in the pattern
