@@ -42,6 +42,14 @@ declare namespace Mocha {
      * @param totalChunks (Optional) number of chunks to split the items into, or Nth filter, or a predicate function
      * @param chunkIndex (Optional) index of the chunk to get items from
      * @example it.each([1, 2, 3])('test %K', (x) => ...)
+     *
+     * You can use different format placeholders in the test title pattern:
+     * - %s - string
+     * - %d - number
+     * - %k - item index (0-based)
+     * - %K - item index (1-based)
+     * - %N - total number of items being iterated over
+     * @example it.each(['one', 'two', ...])('testing "%s" (%K of %N)', (x) => ...)
      * @see https://github.com/bahmutov/cypress-each
      */
     each<T extends readonly [...T]>(
