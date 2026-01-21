@@ -112,7 +112,11 @@ declare namespace Mocha {
      *  it.each(testCases)((a) => { ... })
      */
     each<T0>(testCases: TestCaseObject<T0>): (fn: TestCallback1<T0>) => void
+
+    only: ExclusiveTestFunction
   }
+
+  interface ExclusiveTestFunction extends Omit<TestFunction, 'only'> {}
 
   interface SuiteFunction {
     /**
