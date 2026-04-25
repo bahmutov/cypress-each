@@ -14,7 +14,7 @@ jobs:
           node-version: 20
 
       - name: Cypress tests 🧪
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7.1.9
         with:
           # check types
           build: npm run lint
